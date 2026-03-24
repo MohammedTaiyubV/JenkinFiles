@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+
+    stages{
+
+        stage("Build Both Projects"){
+            steps{
+
+                dir('project1'){
+                    git 'https://github.com/MohammedTaiyubV/Maven_Sample_Project.git'
+                    sh 'mvn clean package'
+                    sh 'java -jar target/*.jar'
+                }
+
+                dir('project2'){
+                    git 'https://github.com/MohammedTaiyubV/Maven_Project2.git'
+                    sh 'mvn clean package'
+                    sh 'java -jar target/*.jar'
+                }
+
+            }
+        }
+
+    }
+}
